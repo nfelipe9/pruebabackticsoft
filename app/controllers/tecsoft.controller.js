@@ -1,5 +1,7 @@
 const db = require("../models");
-const Tecsoft = db.tecsoft;
+db.productos = db.productos;
+db.ventas = db.ventas;
+db.usuarios = db.usuarios;
 const Op = db.Sequelize.Op;
 
 // Create 

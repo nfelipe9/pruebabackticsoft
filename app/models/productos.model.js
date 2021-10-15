@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-    const Tecsoft = sequelize.define("tecsoft", {
+    const Productos = sequelize.define("productos", {
       nombre: {
         type: Sequelize.STRING
       },
@@ -17,5 +17,5 @@ module.exports = (sequelize, Sequelize) => {
       }
     });
   
-    return Tecsoft;
+    return Productos;
   };

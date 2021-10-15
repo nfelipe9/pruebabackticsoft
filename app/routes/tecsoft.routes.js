@@ -5,11 +5,11 @@ module.exports = app => {
   
     router.post("/RegistrarProducto", tecsoft.create);
   
-    router.get("/ActualizarProducto", tecsoft.findAll);
+    router.get("/", tecsoft.findAll);
 
     router.get("/:id", tecsoft.findOne);
   
-    router.put("/:id", tecsoft.update);
+    router.put("/actualizarproducto/:id", tecsoft.update);
   
 
     router.delete("/:id", tecsoft.delete);

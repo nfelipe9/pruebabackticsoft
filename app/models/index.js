@@ -19,10 +19,12 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
-});
 
-db.tecsoft = require("./tecsoft.model.js")(sequelize, Sequelize);
+db.productos = require("./productos.model.js")(sequelize, Sequelize);
+db.ventas = require("./ventas.model.js")(sequelize, Sequelize);
+db.usuarios = require("./usuarios.model.js")(sequelize, Sequelize);
+
+db.productos.hasMany(db.ventas, {as: "ventas"});
+db.usuarios.hasMany(db.ventas, {as: "ventas"})
 
 module.exports = db;
