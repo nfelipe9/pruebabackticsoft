@@ -24,7 +24,10 @@ db.productos = require("./productos.model.js")(sequelize, Sequelize);
 db.ventas = require("./ventas.model.js")(sequelize, Sequelize);
 db.usuarios = require("./usuarios.model.js")(sequelize, Sequelize);
 
-db.productos.hasMany(db.ventas, {as: "ventas"});
+db.ventas.belongsTo(db.productos, {
+  foreignKey: "productosId",
+  as: "productos"
+});
 db.usuarios.hasMany(db.ventas, {as: "ventas"})
 
 module.exports = db;

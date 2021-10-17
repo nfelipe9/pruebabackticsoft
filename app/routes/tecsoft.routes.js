@@ -3,18 +3,27 @@ module.exports = app => {
   
     var router = require("express").Router();
   
-    router.post("/RegistrarProducto", tecsoft.create);
-  
+    router.post("/registrarVentas", tecsoft.crearVenta);
+
+    router.post("/registrarProducto", tecsoft.crearProducto); 
+
+    router.get("/obtenerProductos", tecsoft.obtenerProductos);
+
+    router.get("/obtenerVentas", tecsoft.obtenerVentas);
+
+    router.get("/obtenerUsuarios", tecsoft.obtenerUsuarios);
+
+    router.get("venta/:id", tecsoft.buscarVenta);
+
+    router.get("/producto/:id", tecsoft.buscarProducto);
+
+    router.put("/actualizarProducto/:id", tecsoft.actualizarProducto);
+
+    router.put("/actualizarVentas/:id", tecsoft.actualizarVenta);
+
+    app.use('/api/', router);
+  /*
     router.get("/", tecsoft.findAll);
 
-    router.get("/:id", tecsoft.findOne);
-  
-    router.put("/actualizarproducto/:id", tecsoft.update);
-  
-
-    router.delete("/:id", tecsoft.delete);
-  
-    router.delete("/", tecsoft.deleteAll);
-  
-    app.use('/api/', router);
+    */
   };
