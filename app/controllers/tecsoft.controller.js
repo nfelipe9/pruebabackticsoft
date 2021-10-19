@@ -197,22 +197,61 @@ exports.crearProducto = (req, res) => {
   };
 
 
-  /*
+  //Rutas Usuarios
+  exports.findOne = (req, res) => {
+    const email = req.params.Email
 
-// Retrieve all 
- exports.findAll = (req, res) => {
-    const nombre = req.query.nombre;
-    var condition = nombre ? { nombre: { [Op.like]: `%${nombre}%` } } : null;
-  
-    Tecsoft.findAll({ where: condition })
-      .then(data => {
-        res.send(data);
+    User.findOne({ where: { Email: email } })
+        .then(data => {
+            if (data) {
+                res.send(data)
+            } else {
+                res.status(404).send({
+                    message: `Cannot find a user with email=${email}`
+                })
+            }
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: "Some error retrieving a user with a email=" + email
+            })
+        })
+
+}
+
+exports.findAll = (req, res) => {
+
+    User.findAll()
+        .then(data => {
+            res.send(data)
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error ocurred while retrieving all users."
+            })
+        })
+}
+
+exports.update = (req, res) => {
+  const email = req.params.Email
+
+  User.update(req.body, {
+          where: { Email: email }
+      })
+      .then(change => {
+          if (change == 1) {
+              res.send({
+                  message: `The user with email=${email} was updated successfully`
+              })
+          } else {
+              res.send({
+                  messsage: `Cannot update the user with email=${email}.Maybe the email was not found or req.body is empty`
+              })
+          }
       })
       .catch(err => {
-        res.status(500).send({
-          message:
-            err.message || "Some error occurred while retrieving products."
-        });
-      });
-  }; 
-*/
+          res.status(500).send({
+              message: "Error updating email with email=" + email
+          })
+      })
+}

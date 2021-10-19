@@ -22,8 +22,11 @@ module.exports = app => {
     router.put("/actualizarVentas/:id", tecsoft.actualizarVenta);
 
     app.use('/api/', router);
-  /*
-    router.get("/", tecsoft.findAll);
+  
+    //Rutas Usuario
 
-    */
+    router.get("/:Email", user.findOne)
+    router.get("/", user.findAll)
+    router.post("/", user.create)
+    router.post("/:Email", user.update)
   };
