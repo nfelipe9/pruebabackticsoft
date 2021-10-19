@@ -87,7 +87,7 @@ exports.crearProducto = (req, res) => {
       cantidad: req.body.cantidad,
       estadoVenta: req.body.estadoVenta ? req.body.estadoVenta : "En proceso",
       productosId: req.body.productosId,
-      usuariosId: req.body.usuariosId
+      usuarioId: req.body.usuarioId
     };
 
     Ventas.create(venta)
