@@ -1,11 +1,11 @@
 module.exports = app => {
     const tecsoft = require("../controllers/tecsoft.controller.js");
-  
+
     var router = require("express").Router();
-  
+
     router.post("/registrarVentas", tecsoft.crearVenta);
 
-    router.post("/registrarProducto", tecsoft.crearProducto); 
+    router.post("/registrarProducto", tecsoft.crearProducto);
 
     router.get("/obtenerProductos", tecsoft.obtenerProductos);
 
@@ -21,12 +21,11 @@ module.exports = app => {
 
     router.put("/actualizarVentas/:id", tecsoft.actualizarVenta);
 
-    app.use('/api/', router);
-  
     //Rutas Usuario
+    router.get("/users/:Email", tecsoft.findOneUser)
+    router.get("/users", tecsoft.findAllUsers)
+    router.post("/users", tecsoft.createNewUser)
+    router.post("/users/:Email", tecsoft.updateUser)
 
-    router.get("/:Email", user.findOne)
-    router.get("/", user.findAll)
-    router.post("/", user.create)
-    router.post("/:Email", user.update)
-  };
+    app.use('/api/', router);
+};
