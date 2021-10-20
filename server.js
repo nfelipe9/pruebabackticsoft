@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 
 const db = require("./app/models");
-db.sequelize.sync({ force: true }).then(() => {
+db.sequelize.sync({ force: false }).then(() => {
     console.log("force: true para borrar y crear la base de datos\nforce: false para sincronizar")
 });
 
